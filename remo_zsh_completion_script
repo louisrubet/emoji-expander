@@ -1,0 +1,41 @@
+#!/bin/zsh
+
+#!/bin/bash
+# _remo_completion() {
+#     local cur=${COMP_WORDS[COMP_CWORD]}
+#     local emojis=":smile: :blush:"
+#     local mappings="SMILE BLUSH"
+#     local index
+#     for index in ${!emojis[@]}; do
+#         if [[ "${emojis[index]}" == "$cur"* ]]; then
+#             COMPREPLY+=("${mappings[index]}")
+#         fi
+#     done
+# }
+#
+# complete -F _remo_completion
+_emoji_completion() {
+    emulate -L zsh
+
+    local -a emojis
+    emojis=(":smile:" ":blush:")
+
+    local -a mappings
+    mappings=("SMILE" "BLUSH")
+
+    local curcontext="$curcontext" state line
+    typeset -A opt_args
+
+    _arguments -C -S \
+        '*:emoji:->emoji' && return 0
+
+    case "$state" in
+        (emoji)
+            compadd -a emojis && return 0
+            ;;
+    esac
+
+    return 1
+}
+
+compdef _emoji_completion
