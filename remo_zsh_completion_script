@@ -1,41 +1,41 @@
 #!/bin/zsh
 
-#!/bin/bash
-# _remo_completion() {
-#     local cur=${COMP_WORDS[COMP_CWORD]}
-#     local emojis=":smile: :blush:"
-#     local mappings="SMILE BLUSH"
-#     local index
-#     for index in ${!emojis[@]}; do
-#         if [[ "${emojis[index]}" == "$cur"* ]]; then
-#             COMPREPLY+=("${mappings[index]}")
-#         fi
-#     done
-# }
-#
-# complete -F _remo_completion
-_emoji_completion() {
-    emulate -L zsh
+: "${EMOJI_CLI_FILTER:="fzf-tmux -d 15%:fzf:peco:percol:fzy"}"
 
-    local -a emojis
-    emojis=(":smile:" ":blush:")
+available() {
+    local x candidates
 
-    local -a mappings
-    mappings=("SMILE" "BLUSH")
+    # candidates should be list like "a:b:c" concatenated by a colon
+    candidates="$1:"
 
-    local curcontext="$curcontext" state line
-    typeset -A opt_args
+    while [ -n "$candidates" ]; do
+        # the first remaining entry
+        x=${candidates%%:*}
+        # reset candidates
+        candidates=${candidates#*:}
 
-    _arguments -C -S \
-        '*:emoji:->emoji' && return 0
-
-    case "$state" in
-        (emoji)
-            compadd -a emojis && return 0
-            ;;
-    esac
+        # check if x is available
+        if (( $+commands[${x%% *}] )); then
+            echo "$x"
+            return 0
+        else
+            continue
+        fi
+    done
 
     return 1
 }
 
-compdef _emoji_completion
+_remo_completion() {
+  local output query
+
+  output=$(./remo -a | eval "$(available "$EMOJI_CLI_FILTER")" | awk '{print $1}')
+  [[ -z "$output" ]] && output=":"
+
+  BUFFER=${BUFFER}${output}
+  CURSOR=${#BUFFER}
+  zle reset-prompt
+}
+
+zle -N _remo_completion
+bindkey ":" _remo_completion

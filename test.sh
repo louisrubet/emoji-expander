@@ -1,10 +1,20 @@
 #!/bin/bash
 # set -x
 
+green() {
+    echo -n -e "\033[32m$1\033[0m"
+}
+
+red() {
+    echo -n -e "\033[31m$1\033[0m"
+}
+
 rtest() {
-    echo -n "${1} "
-    [[ "$(echo ${2} | ./remo)" == "${3}" ]] && echo -n passed.. || echo -n FAILED..
-    [[ $(./remo "${2}") == "${3}" ]] && echo passed.. || echo FAILED..
+    echo -n "${1} ${3} "
+    [[ "$(echo ${2} | ./remo)" == "${3}" ]] && green passed || red failed
+    echo -n .. 
+    [[ $(./remo "${2}") == "${3}" ]] && green passed || red failed
+    echo
 }
 
 rtest 1. "" ""
