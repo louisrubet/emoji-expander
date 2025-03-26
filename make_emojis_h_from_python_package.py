@@ -4,16 +4,22 @@ import emoji
 def generate_emoji_list():
     emoji_list = []
 
+    # generate pair shortcode / emoji
+    for emoji_char in emoji.EMOJI_DATA.keys():
+        
+        shortcode = emoji.demojize(emoji_char).strip(':')        
+        emoji_list.append(f'"{shortcode}", "{emoji_char}"')
+
     # some manual addings
     emoji_list.append(f'"+1", "👍"')
     emoji_list.append(f'"-1", "👎"')
     emoji_list.append(f'"smile", "🙂"')
+    emoji_list.append(f'"smiley", "😃"')
+    emoji_list.append(f'"blush", "😊"')
+    emoji_list.append(f'"smirk", "😏"')
+    emoji_list.append(f'"laughing", "😆"')
+    emoji_list.append(f'"relieved", "😌"')
 
-    # browse all emojis from the emoji package
-    for emoji_char in emoji.EMOJI_DATA.keys():
-        # generate pair shortcode / emoji
-        shortcode = emoji.demojize(emoji_char).strip(':')        
-        emoji_list.append(f'"{shortcode}", "{emoji_char}"')
     return emoji_list
 
 # generate the list
