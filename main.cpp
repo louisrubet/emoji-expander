@@ -13,10 +13,6 @@
 /// @details Implementation is character-based
 /// @details and does just one comparison by character read
 
-// cf https://github.com/espanso/espanso
-// cf https://github.com/babarot/emoji-cli
-// cf https://www.webfx.com/tools/emoji-cheat-sheet/
-
 /// @brief substitute emoji shortname with unicode emoji in place
 /// @param emoji the shortname to substitute without leading ':'
 /// @return true if substitution was done
@@ -38,8 +34,8 @@ static void syntax() {
     std::cerr << "  text: substitute emoji shortnames in command arguments" << std::endl;
     std::cerr << "  (no argument): substitute emoji shortnames on standard input" << std::endl;
     std::cerr << "  Example:" << std::endl;
-    std::cerr << "  ➜  remo :monkey:, :horse: and :cow:" << std::endl;
-    std::cerr << "  🐒, 🐴 and 🐮" << std::endl;
+    std::cerr << "  ➜  remo \":cool: :panda:\"" << std::endl;
+    std::cerr << "  😎🐼" << std::endl;
 }
 
 /// @brief substitute emoji shortnames in input stream

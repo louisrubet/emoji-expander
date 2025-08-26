@@ -35,7 +35,7 @@ rtest ":blush :" ":blush :"
 rtest :blush::smirk: 😊😏
 rtest ":blush: stop" "😊 stop"
 rtest "start :blush:" "start 😊"
-rtest 😄:laughing:😊:smiley:😌 😄😆😊😃😌
+rtest 😄:laughing:😊:smiley:😌 😄😂😊😃😌
 rtest "this is a sentence" "this is a sentence"
 rtest "start :blush" "start :blush"
 rtest "start blush:" "start blush:"
@@ -46,6 +46,6 @@ rtest "this is a text: text" "this is a text: text"
 rtest "my blush is :blush: stop" "my blush is 😊 stop"
 rtest "my blush is not :blush" "my blush is not :blush"
 rtest "my blush is not :bb::lL" "my blush is not :bb::lL"
-rtest :smile:laughing:blush:smiley:relieved:smirk: 🙂laughing😊smiley😌smirk:
+rtest :smiling:laughing:blush:smiley:relieved:smirk: 🙂laughing😊smiley😌smirk:
 rtest "my blush is not :blush no stop" "my blush is not :blush no stop"
 rtest "my blush is not then is \:blush:blush:" "my blush is not then is \😊blush:"
