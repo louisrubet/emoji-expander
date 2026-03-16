@@ -10,6 +10,13 @@ $ echo ":bug: fix null pointer" | emoji-expander
 🐛 fix null pointer
 ```
 
+Shell completion is available for bash, zsh and fish. After installing a completion script (see below), you get tab-completion on shortcode names:
+
+```
+$ emoji-expander :roc<TAB>
+:rocket:
+```
+
 Features:
 
 - 500+ common emoji with multiple aliases (e.g. `:heart:`, `:red_heart:`, `:love:` all produce ❤️)
@@ -34,7 +41,7 @@ The included shell scripts bind the `:` key to an interactive emoji picker using
 #### Zsh
 
 ```sh
-sudo cp emoji-expander_zsh_completion_script /usr/local/share/zsh/site-functions/_emoji-expander
+sudo cp shell_extensions/emoji-expander_zsh_completion_script /usr/local/share/zsh/site-functions/_emoji-expander
 ```
 
 Add to `~/.zshrc`:
@@ -46,7 +53,7 @@ source /usr/local/share/zsh/site-functions/_emoji-expander
 #### Bash
 
 ```sh
-sudo cp emoji-expander_bash_completion_script /usr/local/share/emoji-expander/emoji-expander.bash
+sudo cp shell_extensions/emoji-expander_bash_completion_script /usr/local/share/emoji-expander/emoji-expander.bash
 ```
 
 Add to `~/.bashrc`:
@@ -58,7 +65,7 @@ source /usr/local/share/emoji-expander/emoji-expander.bash
 #### Fish
 
 ```sh
-cp emoji-expander_fish_completion_script ~/.config/fish/conf.d/emoji-expander.fish
+cp shell_extensions/emoji-expander_fish_completion_script ~/.config/fish/conf.d/emoji-expander.fish
 ```
 
 Reload your shell or open a new terminal. Pressing `:` will open the emoji picker.
