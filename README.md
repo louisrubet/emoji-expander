@@ -1,53 +1,90 @@
-# remo - shortcode to emoji expander
+# emoji-expander - emoji shortcode expander
 
-Originally intended for git commits, this shortcode expander allows to insert emoji glyphs into all commands from the zsh terminal.
+`emoji-expander` expands `:shortcodes:` into Unicode emoji. Originally intended for git commits, it works with any text from the terminal.
 
-* list of more than 400 most common emojis
-* complete with emojibase 17.0
-* common shorcodes (case insensitive)
+```
+$ emoji-expander ":rocket: deploy v2.1"
+🚀 deploy v2.1
 
-## Installation from build
+$ echo ":bug: fix null pointer" | emoji-expander
+🐛 fix null pointer
+```
 
-Options:
-- triggering key
-- language (could be auto)
-- subset : android, iOS, standard (? python ? unicode ?), gitmoji
+Features:
 
-## emoji lists
+- 500+ common emoji with multiple aliases (e.g. `:heart:`, `:red_heart:`, `:love:` all produce ❤️)
+- Works with stdin and command-line arguments
+- Shell integration: bind `:` to an interactive fuzzy emoji picker (bash, zsh, fish)
 
-Apple: Unicode 15.1 (3,782 emojis)
-gboard on android: Google Noto Color Emoji, which implements the full Unicode standard = Unicode 15.1 is supported in Android 14 / Gboard updates
-GitHub:
-    - Apple emoji images on Apple devices, and Twemoji (Twitter’s emoji set) as fallback on other platforms
-    - own shortcode set, which originated from early GitHub markdown
-      - :tada: → 🎉
-      - :bug: → 🐛
-    - Some GitHub shortcodes are not standard (e.g., :shipit: 🐿️ was a GitHub easter egg).
-Slack:
-    - Apple’s emoji set on macOS/iOS, and Noto Color Emoji (Google)
-    - Slack has a large shortcode set, very similar to GitHub’s (many overlap).
-    - Example:
-      - :joy: → 😂
-      - :sob: → 😭
-      - :heart: → ❤️
-    - Plus custom emoji support, where teams can upload their own images and assign them shortcodes.
-Discord:
-    - Uses Twemoji (Twitter’s open-source emoji set) for all devices, to keep it consistent.
-    - Uses a GitHub/Slack-inspired shortcode system (very similar mappings).
-    - examples:
-      - :thinking: → 🤔
-      - :fire: → 🔥
-      - :100: → 💯
+## Installation
 
-Slack, GitHub, Discord, Twitter
-Android
+### Build from source
 
-## Build
+Requires [Rust](https://www.rust-lang.org/tools/install).
+
+```sh
+cargo build --release
+sudo cp target/release/emoji-expander /usr/local/bin/
+```
+
+### Shell integration (emoji picker)
+
+The included shell scripts bind the `:` key to an interactive emoji picker using [fzf](https://github.com/junegunn/fzf) (or peco/percol/fzy).
+
+#### Zsh
+
+```sh
+sudo cp emoji-expander_zsh_completion_script /usr/local/share/zsh/site-functions/_emoji-expander
+```
+
+Add to `~/.zshrc`:
+
+```sh
+source /usr/local/share/zsh/site-functions/_emoji-expander
+```
+
+#### Bash
+
+```sh
+sudo cp emoji-expander_bash_completion_script /usr/local/share/emoji-expander/emoji-expander.bash
+```
+
+Add to `~/.bashrc`:
+
+```sh
+source /usr/local/share/emoji-expander/emoji-expander.bash
+```
+
+#### Fish
+
+```sh
+cp emoji-expander_fish_completion_script ~/.config/fish/conf.d/emoji-expander.fish
+```
+
+Reload your shell or open a new terminal. Pressing `:` will open the emoji picker.
+
+## Usage
+
+```
+emoji-expander [-a | --all] [-h | --help] [text]
+```
+
+| Mode | Example |
+|------|---------|
+| Expand arguments | `emoji-expander ":tada: release"` |
+| Expand stdin | `echo ":fire:" \| emoji-expander` |
+| List all emoji | `emoji-expander -a` |
+| Help | `emoji-expander -h` |
 
 ## Credits
-* https://unicode.org/Public/emoji/
-* https://home.unicode.org/emoji/emoji-frequency/
-* https://github.com/espanso/espanso
-* https://github.com/babarot/emoji-cli
-* https://www.webfx.com/tools/emoji-cheat-sheet/
-* https://github.com/carloscuesta/gitmoji and https://github.com/carloscuesta/gitmoji-cli
+
+- [Unicode emoji data](https://unicode.org/Public/emoji/)
+- [Unicode emoji frequency](https://home.unicode.org/emoji/emoji-frequency/)
+- [espanso](https://github.com/espanso/espanso)
+- [emoji-cli](https://github.com/babarot/emoji-cli)
+- [gitmoji](https://github.com/carloscuesta/gitmoji)
+- [emoji cheat sheet](https://www.webfx.com/tools/emoji-cheat-sheet/)
+
+## License
+
+MIT - see [LICENSE](LICENSE)

@@ -29,7 +29,7 @@ available() {
 _remo_completion() {
   local output query
 
-  output=$(./remo -a | eval "$(available "$EMOJI_CLI_FILTER")" | awk '{print $1}')
+  output=$(emoji-expander -a | eval "$(available "$EMOJI_CLI_FILTER")" | awk '{print $1}')
   [[ -z "$output" ]] && output=":"
 
   BUFFER=${BUFFER}${output}

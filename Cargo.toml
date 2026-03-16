@@ -1,0 +1,12 @@
+[package]
+name = "emoji-expander"
+version = "0.1.0"
+edition = "2024"
+license = "MIT"
+description = "emoji shortcodes to unicode expander"
+
+[profile.release]
+opt-level = 3
+
+[dependencies]
+lazy_static = "1"

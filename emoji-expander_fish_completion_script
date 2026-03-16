@@ -1,0 +1,32 @@
+#!/usr/bin/env fish
+
+set -q EMOJI_CLI_FILTER; or set -g EMOJI_CLI_FILTER "fzf-tmux -d 15%:fzf:peco:percol:fzy"
+
+function _emoji_cli_available
+    for x in (string split ":" $argv[1])
+        test -z "$x"; and continue
+        set -l cmd (string split " " $x)[1]
+        if command -q $cmd
+            echo $x
+            return 0
+        end
+    end
+    return 1
+end
+
+function _remo_completion
+    set -l filter (_emoji_cli_available $EMOJI_CLI_FILTER); or begin
+        commandline -i ":"
+        return
+    end
+
+    set -l output (emoji-expander -a | eval $filter | awk '{print $1}')
+
+    if test -z "$output"
+        commandline -i ":"
+    else
+        commandline -i "$output"
+    end
+end
+
+bind : _remo_completion

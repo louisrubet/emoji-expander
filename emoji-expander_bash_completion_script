@@ -1,0 +1,42 @@
+#!/bin/bash
+
+: "${EMOJI_CLI_FILTER:="fzf-tmux -d 15%:fzf:peco:percol:fzy"}"
+
+_emoji_cli_available() {
+    local x candidates
+
+    # candidates should be list like "a:b:c" concatenated by a colon
+    candidates="$1:"
+
+    while [ -n "$candidates" ]; do
+        # the first remaining entry
+        x=${candidates%%:*}
+        # reset candidates
+        candidates=${candidates#*:}
+
+        # check if x is available
+        if command -v "${x%% *}" >/dev/null 2>&1; then
+            echo "$x"
+            return 0
+        fi
+    done
+
+    return 1
+}
+
+_remo_completion() {
+    local output filter
+
+    filter=$(_emoji_cli_available "$EMOJI_CLI_FILTER") || return
+
+    output=$(emoji-expander -a | eval "$filter" | awk '{print $1}')
+    [[ -z "$output" ]] && output=":"
+
+    # Insert output at cursor position in the readline buffer
+    local before="${READLINE_LINE:0:$READLINE_POINT}"
+    local after="${READLINE_LINE:$READLINE_POINT}"
+    READLINE_LINE="${before}${output}${after}"
+    READLINE_POINT=$(( ${#before} + ${#output} ))
+}
+
+bind -x '":":"_remo_completion"'

@@ -11,9 +11,9 @@ red() {
 
 rtest() {
     echo -n "${line}. ${2} "
-    [[ "$(echo ${1} | ./remo)" == "${2}" ]] && green "\tpassed" || red "\tfailed" # stdin test
+    [[ "$(echo ${1} | ./emoji-expander)" == "${2}" ]] && green "\tpassed" || red "\tfailed" # stdin test
     echo -n ..
-    [[ $(./remo "${1}") == "${2}" ]] && green passed || red failed # arg test
+    [[ $(./emoji-expander "${1}") == "${2}" ]] && green passed || red failed # arg test
     echo
     line=$((line+1))
 }
@@ -39,7 +39,7 @@ rtest 😄:laughing:😊:smiley:😌 😄😂😊😃😌
 rtest "this is a sentence" "this is a sentence"
 rtest "start :blush" "start :blush"
 rtest "start blush:" "start blush:"
-rtest  ":blush stop" ":blush stop"
+rtest ":blush stop" ":blush stop"
 rtest "my blush is :blush:" "my blush is 😊"
 rtest "my blush is \:blush:" "my blush is \😊"
 rtest "this is a text: text" "this is a text: text"
