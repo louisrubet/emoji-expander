@@ -12,12 +12,7 @@ $ echo ":bug: fix null pointer" | emoji-expander
 
 ![demo](demo/demo.gif)
 
-Shell completion is available for bash, zsh and fish. After installing a completion script (see below), you get tab-completion on shortcode names:
-
-```
-$ emoji-expander :roc<TAB>
-:rocket:
-```
+Shell completion is available for bash, zsh and fish after `:` is pressed. After installing a completion script (see below), you get tab-completion on shortcode names.
 
 Features:
 
