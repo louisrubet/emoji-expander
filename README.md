@@ -10,6 +10,8 @@ $ echo ":bug: fix null pointer" | emoji-expander
 🐛 fix null pointer
 ```
 
+![demo](demo/demo.gif)
+
 Shell completion is available for bash, zsh and fish. After installing a completion script (see below), you get tab-completion on shortcode names:
 
 ```
