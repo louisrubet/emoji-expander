@@ -83,6 +83,51 @@ emoji-expander [-a | --all] [-h | --help] [text]
 | List all emoji | `emoji-expander -a` |
 | Help | `emoji-expander -h` |
 
+## Git commit emoji
+
+A set of emoji for git commits is included. Each one is available by its shortcode and also with a `git_` prefix (e.g. `:fix:` or `:git_fix:`).
+
+```
+$ emoji-expander ":git_fix: resolve null pointer"
+🔧 resolve null pointer
+```
+
+| Shortcode | Emoji | Use |
+|-----------|-------|-----|
+| `:fix:` `:wrench:` | 🔧 | Bug fixes |
+| `:build:` `:hammer:` | 🔨 | Build system |
+| `:docs:` `:memo:` | 📝 | Documentation |
+| `:test:` `:test_tube:` | 🧪 | Tests |
+| `:check:` `:done:` | ✅ | Completed |
+| `:remove:` `:cross_mark:` | ❌ | Remove |
+| `:add:` `:heavy_plus_sign:` | ➕ | Add |
+| `:delete:` `:trash:` | 🗑️ | Delete |
+| `:refactor:` `:recycle:` | ♻️ | Refactor |
+| `:move:` `:rename:` | 🚚 | Move/rename |
+| `:wip:` `:construction:` | 🚧 | Work in progress |
+| `:hotfix:` `:ambulance:` | 🚑 | Critical fix |
+| `:config:` `:gear:` | ⚙️ | Configuration |
+| `:security:` `:lock:` | 🔒 | Security |
+| `:upgrade:` `:arrow_up:` | ⬆️ | Upgrade |
+| `:downgrade:` `:arrow_down:` | ⬇️ | Downgrade |
+| `:merge:` | 🔀 | Merge |
+| `:revert:` `:rewind:` | ⏪ | Revert |
+| `:init:` `:seedling:` | 🌱 | Initial commit |
+| `:patch:` | 🩹 | Minor fix |
+| `:cleanup:` `:broom:` | 🧹 | Cleanup |
+| `:deprecate:` `:coffin:` | ⚰️ | Deprecation |
+| `:ci:` | 🟢 | CI |
+| `:docker:` | 🐳 | Docker |
+| `:gitignore:` | 🙈 | .gitignore |
+| `:license:` | 📜 | License |
+| `:announce:` | 📢 | Announcements |
+| `:deploy:` `:rocket:` | 🚀 | Deploy |
+| `:release:` `:tada:` | 🎉 | Release |
+| `:fire:` | 🔥 | Remove code/files |
+| `:sparkles:` | ✨ | New feature |
+| `:bug:` | 🐛 | Bug |
+| `:art:` | 🎨 | Style/structure |
+
 ## Credits
 
 - [Unicode emoji data](https://unicode.org/Public/emoji/)
