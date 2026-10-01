@@ -27,6 +27,14 @@ _emoji_cli_available() {
 _remo_completion() {
     local output filter
 
+    if [[ "${NOEMO:-}" == "1" ]]; then
+        local before="${READLINE_LINE:0:$READLINE_POINT}"
+        local after="${READLINE_LINE:$READLINE_POINT}"
+        READLINE_LINE="${before}:${after}"
+        READLINE_POINT=$(( READLINE_POINT + 1 ))
+        return
+    fi
+
     filter=$(_emoji_cli_available "$EMOJI_CLI_FILTER") || return
 
     output=$(emoji-expander -a | eval "$filter" | awk '{print $1}')
@@ -39,4 +47,6 @@ _remo_completion() {
     READLINE_POINT=$(( ${#before} + ${#output} ))
 }
 
-bind -x '":":"_remo_completion"'
+if [[ $- == *i* ]]; then
+    bind -x '":":"_remo_completion"'
+fi

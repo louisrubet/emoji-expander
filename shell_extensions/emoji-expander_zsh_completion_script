@@ -29,6 +29,12 @@ available() {
 _remo_completion() {
   local output query
 
+  if [[ "${NOEMO:-}" == "1" ]]; then
+    LBUFFER="${LBUFFER}:"
+    zle reset-prompt
+    return
+  fi
+
   output=$(emoji-expander -a | eval "$(available "$EMOJI_CLI_FILTER")" | awk '{print $1}')
   [[ -z "$output" ]] && output=":"
 

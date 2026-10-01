@@ -1,6 +1,8 @@
-# emoji-expander - emoji shortcode expander
+# emoji-expander - terminal emoji shortcode expander
 
-`emoji-expander` expands `:shortcodes:` into Unicode emoji. Originally intended for git commits, it works with any text from the terminal.
+![demo](demo/demo.gif)
+
+`emoji-expander` expands `:shortcodes:` into UTF-8 encoded Unicode emojis. Originally intended for git commits, it works with any text from the terminal.
 
 ```
 $ emoji-expander ":rocket: deploy v2.1"
@@ -9,8 +11,6 @@ $ emoji-expander ":rocket: deploy v2.1"
 $ echo ":bug: fix null pointer" | emoji-expander
 🐛 fix null pointer
 ```
-
-![demo](demo/demo.gif)
 
 Shell completion is available for bash, zsh and fish after `:` is pressed. After installing a completion script (see below), you get tab-completion on shortcode names.
 
@@ -22,50 +22,51 @@ Features:
 
 ## Installation
 
-### Build from source
-
 Requires [Rust](https://www.rust-lang.org/tools/install).
 
-```sh
-cargo build --release
-sudo cp target/release/emoji-expander /usr/local/bin/
-```
-
-### Shell integration (emoji picker)
-
-The included shell scripts bind the `:` key to an interactive emoji picker using [fzf](https://github.com/junegunn/fzf) (or peco/percol/fzy).
-
-#### Zsh
+Install the binary and the shell integration for your current shell:
 
 ```sh
-sudo cp shell_extensions/emoji-expander_zsh_completion_script /usr/local/share/zsh/site-functions/_emoji-expander
+./install.sh
 ```
 
-Add to `~/.zshrc`:
+`install.sh` installs the binary with `cargo install --path . --root ~/.local` and detects the shell integration from `$SHELL`.
+
+Useful options:
 
 ```sh
-source /usr/local/share/zsh/site-functions/_emoji-expander
+./install.sh --zsh
+./install.sh --bash
+./install.sh --fish
+./install.sh --all-shells
+./install.sh --prefix ~/.local
+./install.sh --no-binary --zsh
+./install.sh --dry-run
 ```
 
-#### Bash
+After installation, ensure the binary directory is in `PATH`:
 
 ```sh
-sudo cp shell_extensions/emoji-expander_bash_completion_script /usr/local/share/emoji-expander/emoji-expander.bash
+export PATH="$HOME/.local/bin:$PATH"
 ```
 
-Add to `~/.bashrc`:
+For zsh or bash, add the source line printed by `install.sh` to your shell rc file. Fish integration is installed under `~/.config/fish/conf.d/` and loads automatically.
+
+The shell integration binds the `:` key to an interactive emoji picker using [fzf](https://github.com/junegunn/fzf) (or peco/percol/fzy). Reload your shell or open a new terminal. Pressing `:` will open the emoji picker.
+
+Temporarily disable shell completion:
 
 ```sh
-source /usr/local/share/emoji-expander/emoji-expander.bash
+export NOEMO=1
 ```
 
-#### Fish
+Enable it again:
 
 ```sh
-cp shell_extensions/emoji-expander_fish_completion_script ~/.config/fish/conf.d/emoji-expander.fish
+export NOEMO=
 ```
 
-Reload your shell or open a new terminal. Pressing `:` will open the emoji picker.
+`NOEMO` only affects shell integrations; `emoji-expander` still works normally.
 
 ## Usage
 
