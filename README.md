@@ -104,9 +104,31 @@ emoji-expander [-a | --all] [-h | --help] [--version] [text]
 
 `--version` prints the latest git tag, with `+<5-char-commit-sha>` appended when the current commit is not exactly that tag.
 
+## Included emoji
+
+Unique emoji values included in `emoji-expander`, in source order, wrapped at 50 emoji per line:
+
+```text
+😭😂❤️🔥✨💀👍😍🙏💯😊🥺👏🤣😘💪🎉😢👀💕😎🔴💙🌟😋🤷🥰😏🤔🌈👑💖🎊😴🙃💚😉🤗👌💜🌙🎈😅👋🤪🥳😄🖤😃🙄
+💓🥲😆🤩🎁🌺💤🍕🎵🌸🤤😱🎂☀️🌻🔊🤝👻🍀⚡🌊🎸🍔🌹📱💎🍎⭐🏆🎯🌴🍰👊🌷🍓🎮🚀⚽🎭🦋🎪🍉🎨🍦🏀🐱🌞🎤👶💋
+🌛🎥💝🍻🌕😮🚗🐶🏠💐🔔🥇🌜👯🎺🍄🌰🎓💸🔑😇🎳🍇🎹📚🏃🍪⏰🌲🎶👔🍋🔮🏝️🍌🎏🎀🧡💌🍁🎰🏁🍃🎋💰🍍🎷🧠⚖️🥀
+💣🌎🏈🧚🏖️🎣🍥🧜⚓🌋🧞🐠🍤🚴🧨⛵🌍🍸🚂🌏🍮🚁🌐🍡🛸🌌🎬🍢🛰️🌆🍫🚢🌃🎲🍭⛱️🌉🎟️🍬🎡🌇🧿🍯🎢🌅🔱🥜🎠⚜️🥥
+🌁🔯🥒☁️✡️🥑⛅☪️🥝⛈️🕎🥭🌤️☦️🫐🌥️🛐🍊🌦️🕉️🫒🌧️🪬🌶️❄️🧄☃️🧅⛄🫑🌨️🥔🏔️🥕⛰️🌽🗻🥬🏕️🏞️🫛🫘🥨🥯🥖🫓🥐🧈🥞🌼
+🧇🧀🥓🥩🍗🍖🌭🥙🏵️🌮🌾🌯🌿🥗🥘🍝🍂🍜🍲🍛🌳🍱🍘🍙🎍🍚🌵🍣🦞🦀🦐🦑🐙🦪🐚🐡🦈🐟🐳🐋🐬🦭🐧🦆🦢🦜🦚🦩🦅🦉
+🐦🐔🐓🐣🐤🐥🕊️🦇🐛🐌🦗🕷️🕸️🦂🦟🦠🐭🐁🐹🐰🐇🐿️🦔🐻🐻‍❄️🐨🐼🦘🦡🐾🦃🦮🐕‍🦺🐩🐺🦊🦝🐈‍⬛🦁🐯🐅🐆🐴🐎🦄🦓🦌🦬🐮🐄
+🐂🐃🐷🐖🐽🐏🐑🐐🐪🐫🦙🦒🐘🦏🦛🐵🐒🦍🦧🫏🫎🦥🦦🦨🐸🐲🐉🐍🦎🐊🐢🦖🦕🚩🎌🏴🏳️🏳️‍🌈🏳️‍⚧️🏴‍☠️🚧🔧🔨✏️📝💡✅✔️❌⚠️
+♻️🚚🔒🔖🏷️📦🚑🗑️🧪⚗️⚙️📌🔍🧹🩹🌱⬆️⬇️🔀⏪➕➖🚨📋📢🟢🙈💬📜⚰️🙂😐😑😶🤨😌👎🇦🇨🇦🇩🇦🇪🇦🇫🇦🇬🇦🇮🇦🇱🇦🇲🇦🇴🇦🇶🇦🇷🇦🇸🇦🇹
+🇦🇺🇦🇼🇦🇽🇦🇿🇧🇦🇧🇧🇧🇩🇧🇪🇧🇫🇧🇬🇧🇭🇧🇮🇧🇯🇧🇱🇧🇲🇧🇳🇧🇴🇧🇶🇧🇷🇧🇸🇧🇹🇧🇻🇧🇼🇧🇾🇧🇿🇨🇦🇨🇨🇨🇩🇨🇫🇨🇬🇨🇭🇨🇮🇨🇰🇨🇱🇨🇲🇨🇳🇨🇴🇨🇵🇨🇶🇨🇷🇨🇺🇨🇻🇨🇼🇨🇽🇨🇾🇨🇿🇩🇪🇩🇬🇩🇯🇩🇰
+🇩🇲🇩🇴🇩🇿🇪🇦🇪🇨🇪🇪🇪🇬🇪🇭🇪🇷🇪🇸🇪🇹🇪🇺🇫🇮🇫🇯🇫🇰🇫🇲🇫🇴🇫🇷🇬🇦🇬🇧🇬🇩🇬🇪🇬🇫🇬🇬🇬🇭🇬🇮🇬🇱🇬🇲🇬🇳🇬🇵🇬🇶🇬🇷🇬🇸🇬🇹🇬🇺🇬🇼🇬🇾🇭🇰🇭🇲🇭🇳🇭🇷🇭🇹🇭🇺🇮🇨🇮🇩🇮🇪🇮🇱🇮🇲🇮🇳🇮🇴
+🇮🇶🇮🇷🇮🇸🇮🇹🇯🇪🇯🇲🇯🇴🇯🇵🇰🇪🇰🇬🇰🇭🇰🇮🇰🇲🇰🇳🇰🇵🇰🇷🇰🇼🇰🇾🇰🇿🇱🇦🇱🇧🇱🇨🇱🇮🇱🇰🇱🇷🇱🇸🇱🇹🇱🇺🇱🇻🇱🇾🇲🇦🇲🇨🇲🇩🇲🇪🇲🇫🇲🇬🇲🇭🇲🇰🇲🇱🇲🇲🇲🇳🇲🇴🇲🇵🇲🇶🇲🇷🇲🇸🇲🇹🇲🇺🇲🇻🇲🇼
+🇲🇽🇲🇾🇲🇿🇳🇦🇳🇨🇳🇪🇳🇫🇳🇬🇳🇮🇳🇱🇳🇴🇳🇵🇳🇷🇳🇺🇳🇿🇴🇲🇵🇦🇵🇪🇵🇫🇵🇬🇵🇭🇵🇰🇵🇱🇵🇲🇵🇳🇵🇷🇵🇸🇵🇹🇵🇼🇵🇾🇶🇦🇷🇪🇷🇴🇷🇸🇷🇺🇷🇼🇸🇦🇸🇧🇸🇨🇸🇩🇸🇪🇸🇬🇸🇭🇸🇮🇸🇯🇸🇰🇸🇱🇸🇲🇸🇳🇸🇴
+🇸🇷🇸🇸🇸🇹🇸🇻🇸🇽🇸🇾🇸🇿🇹🇦🇹🇨🇹🇩🇹🇫🇹🇬🇹🇭🇹🇯🇹🇰🇹🇱🇹🇲🇹🇳🇹🇴🇹🇷🇹🇹🇹🇻🇹🇼🇹🇿🇺🇦🇺🇬🇺🇲🇺🇳🇺🇸🇺🇾🇺🇿🇻🇦🇻🇨🇻🇪🇻🇬🇻🇮🇻🇳🇻🇺🇼🇫🇼🇸🇽🇰🇾🇪🇾🇹🇿🇦🇿🇲🇿🇼🏴󠁧󠁢󠁥󠁮󠁧󠁿🏴󠁧󠁢󠁳󠁣󠁴󠁿🏴󠁧󠁢󠁷󠁬󠁳󠁿
+```
+
+
 ## Git commit emoji
 
-A set of emoji for git commits is included. Each one is available by its shortcode and also with a `git_` prefix (e.g. `:fix:` or `:git_fix:`).
+A set of emoji for git commits is included. Each one is available with a `git_` shortcode (e.g. `:git_fix:`).
 
 ```
 $ emoji-expander ":git_fix: resolve null pointer"
@@ -115,39 +137,39 @@ $ emoji-expander ":git_fix: resolve null pointer"
 
 | Shortcode | Emoji | Use |
 |-----------|-------|-----|
-| `:fix:` `:wrench:` | 🔧 | Bug fixes |
-| `:build:` `:hammer:` | 🔨 | Build system |
-| `:docs:` `:memo:` | 📝 | Documentation |
-| `:test:` `:test_tube:` | 🧪 | Tests |
-| `:check:` `:done:` | ✅ | Completed |
-| `:remove:` `:cross_mark:` | ❌ | Remove |
-| `:add:` `:heavy_plus_sign:` | ➕ | Add |
-| `:delete:` `:trash:` | 🗑️ | Delete |
-| `:refactor:` `:recycle:` | ♻️ | Refactor |
-| `:move:` `:rename:` | 🚚 | Move/rename |
-| `:wip:` `:construction:` | 🚧 | Work in progress |
-| `:hotfix:` `:ambulance:` | 🚑 | Critical fix |
-| `:config:` `:gear:` | ⚙️ | Configuration |
-| `:security:` `:lock:` | 🔒 | Security |
-| `:upgrade:` `:arrow_up:` | ⬆️ | Upgrade |
-| `:downgrade:` `:arrow_down:` | ⬇️ | Downgrade |
-| `:merge:` | 🔀 | Merge |
-| `:revert:` `:rewind:` | ⏪ | Revert |
-| `:init:` `:seedling:` | 🌱 | Initial commit |
-| `:patch:` | 🩹 | Minor fix |
-| `:cleanup:` `:broom:` | 🧹 | Cleanup |
-| `:deprecate:` `:coffin:` | ⚰️ | Deprecation |
-| `:ci:` | 🟢 | CI |
-| `:docker:` | 🐳 | Docker |
-| `:gitignore:` | 🙈 | .gitignore |
-| `:license:` | 📜 | License |
-| `:announce:` | 📢 | Announcements |
-| `:deploy:` `:rocket:` | 🚀 | Deploy |
-| `:release:` `:tada:` | 🎉 | Release |
-| `:fire:` | 🔥 | Remove code/files |
-| `:sparkles:` | ✨ | New feature |
-| `:bug:` | 🐛 | Bug |
-| `:art:` | 🎨 | Style/structure |
+| `:git_fix:` | 🔧 | Bug fixes |
+| `:git_build:` | 🔨 | Build system |
+| `:git_docs:` | 📝 | Documentation |
+| `:git_test:` | 🧪 | Tests |
+| `:git_check:` | ✅ | Completed |
+| `:git_remove:` | ❌ | Remove |
+| `:git_add:` | ➕ | Add |
+| `:git_delete:` | 🗑️ | Delete |
+| `:git_refactor:` | ♻️ | Refactor |
+| `:git_move:` | 🚚 | Move/rename |
+| `:git_wip:` | 🚧 | Work in progress |
+| `:git_hotfix:` | 🚑 | Critical fix |
+| `:git_config:` | ⚙️ | Configuration |
+| `:git_security:` | 🔒 | Security |
+| `:git_upgrade:` | ⬆️ | Upgrade |
+| `:git_downgrade:` | ⬇️ | Downgrade |
+| `:git_merge:` | 🔀 | Merge |
+| `:git_revert:` | ⏪ | Revert |
+| `:git_init:` | 🌱 | Initial commit |
+| `:git_patch:` | 🩹 | Minor fix |
+| `:git_cleanup:` | 🧹 | Cleanup |
+| `:git_deprecate:` | ⚰️ | Deprecation |
+| `:git_ci:` | 🟢 | CI |
+| `:git_docker:` | 🐳 | Docker |
+| `:git_gitignore:` | 🙈 | .gitignore |
+| `:git_license:` | 📜 | License |
+| `:git_announce:` | 📢 | Announcements |
+| `:git_deploy:` | 🚀 | Deploy |
+| `:git_release:` | 🎉 | Release |
+| `:git_fire:` | 🔥 | Remove code/files |
+| `:git_sparkles:` | ✨ | New feature |
+| `:git_bug:` | 🐛 | Bug |
+| `:git_art:` | 🎨 | Style/structure |
 
 ## Credits
 
