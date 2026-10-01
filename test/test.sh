@@ -9,7 +9,9 @@ red() {
     echo -n -e "\033[31m$1\033[0m"
 }
 
+script_dir=$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")" && pwd)
 emoji_expander_bin=${EMOJI_EXPANDER_BIN:-emoji-expander}
+perf_file=${EMOJI_EXPANDER_PERF_FILE:-$script_dir/test-perf.txt}
 
 rtest() {
     echo -n "${line}. ${2} "
@@ -70,3 +72,26 @@ rtest "http://example.com/:blush:" "http://example.com/:blush:"
 rtest "time 12:30 :blush:" "time 12:30 :blush:"
 rtest "ratio 1:2 :blush:" "ratio 1:2 :blush:"
 rtest "literal * ? [abc] :blush:" "literal * ? [abc] 😊"
+
+
+perf_test() {
+    if [[ ! -r "$perf_file" ]]; then
+        red "performance test skipped: missing $perf_file"
+        echo
+        return 0
+    fi
+
+    local bytes start end elapsed_ns elapsed_ms mib_per_s
+    bytes=$(wc -c < "$perf_file")
+    start=$(date +%s%N)
+    "$emoji_expander_bin" < "$perf_file" > /dev/null
+    end=$(date +%s%N)
+    elapsed_ns=$((end - start))
+    elapsed_ms=$(awk -v ns="$elapsed_ns" 'BEGIN { printf "%.2f", ns / 1000000 }')
+    mib_per_s=$(awk -v bytes="$bytes" -v ns="$elapsed_ns" 'BEGIN { printf "%.2f", (bytes / 1048576) / (ns / 1000000000) }')
+
+    echo
+    echo "Performance: $bytes bytes in ${elapsed_ms} ms (${mib_per_s} MiB/s)"
+}
+
+perf_test
