@@ -38,8 +38,7 @@ _remo_completion() {
   output=$(emoji-expander -a | eval "$(available "$EMOJI_CLI_FILTER")" | awk '{print $1}')
   [[ -z "$output" ]] && output=":"
 
-  BUFFER=${BUFFER}${output}
-  CURSOR=${#BUFFER}
+  LBUFFER="${LBUFFER}${output}"
   zle reset-prompt
 }
 
