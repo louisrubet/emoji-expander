@@ -24,9 +24,35 @@ Features:
 
 Requires [Rust](https://www.rust-lang.org/tools/install).
 
-Install the binary and the shell integration for your current shell:
+### Install from Git
+
+Install the binary directly from GitHub:
 
 ```sh
+cargo install --git https://github.com/louisrubet/emoji-expander --root ~/.local
+```
+
+Then ensure the binary directory is in `PATH`:
+
+```sh
+export PATH="$HOME/.local/bin:$PATH"
+```
+
+This installs the `emoji-expander` command only. To install shell integration too, clone the repository and run `install.sh --no-binary`:
+
+```sh
+git clone https://github.com/louisrubet/emoji-expander.git
+cd emoji-expander
+./install.sh --no-binary
+```
+
+### Install after cloning
+
+Clone the repository, then run `install.sh`:
+
+```sh
+git clone https://github.com/louisrubet/emoji-expander.git
+cd emoji-expander
 ./install.sh
 ```
 
@@ -42,12 +68,6 @@ Useful options:
 ./install.sh --prefix ~/.local
 ./install.sh --no-binary --zsh
 ./install.sh --dry-run
-```
-
-After installation, ensure the binary directory is in `PATH`:
-
-```sh
-export PATH="$HOME/.local/bin:$PATH"
 ```
 
 For zsh or bash, add the source line printed by `install.sh` to your shell rc file. Fish integration is installed under `~/.config/fish/conf.d/` and loads automatically.
