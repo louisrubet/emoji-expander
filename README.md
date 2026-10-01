@@ -91,7 +91,7 @@ export NOEMO=
 ## Usage
 
 ```
-emoji-expander [-a | --all] [-h | --help] [text]
+emoji-expander [-a | --all] [-h | --help] [--version] [text]
 ```
 
 | Mode | Example |
@@ -99,7 +99,10 @@ emoji-expander [-a | --all] [-h | --help] [text]
 | Expand arguments | `emoji-expander ":tada: release"` |
 | Expand stdin | `echo ":fire:" \| emoji-expander` |
 | List all emoji | `emoji-expander -a` |
+| Version | `emoji-expander --version` |
 | Help | `emoji-expander -h` |
+
+`--version` prints the latest git tag, with `+<5-char-commit-sha>` appended when the current commit is not exactly that tag.
 
 ## Git commit emoji
 

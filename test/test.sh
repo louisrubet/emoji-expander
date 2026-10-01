@@ -15,14 +15,25 @@ perf_file=${EMOJI_EXPANDER_PERF_FILE:-$script_dir/test-perf.txt}
 
 rtest() {
     echo -n "${line}. ${2} "
-    [[ "$(printf '%s' "$1" | "$emoji_expander_bin")" == "$2" ]] && green "\tpassed" || red "\tfailed" # stdin test
+    if [[ "$(printf '%s' "$1" | "$emoji_expander_bin")" == "$2" ]]; then
+        green "\tpassed"
+    else
+        red "\tfailed"
+        failures=$((failures+1))
+    fi
     echo -n ..
-    [[ "$("$emoji_expander_bin" "$1")" == "$2" ]] && green passed || red failed # arg test
+    if [[ "$("$emoji_expander_bin" "$1")" == "$2" ]]; then
+        green passed
+    else
+        red failed
+        failures=$((failures+1))
+    fi
     echo
     line=$((line+1))
 }
 
 line=1
+failures=0
 rtest "" ""
 rtest : :
 rtest :: ::
@@ -74,6 +85,35 @@ rtest "ratio 1:2 :blush:" "ratio 1:2 :blush:"
 rtest "literal * ? [abc] :blush:" "literal * ? [abc] 😊"
 
 
+version_test() {
+    local last_tag head expected actual
+
+    if last_tag=$(git -C "$script_dir/.." describe --tags --abbrev=0 2>/dev/null); then
+        if git -C "$script_dir/.." describe --tags --exact-match HEAD >/dev/null 2>&1; then
+            expected="$last_tag"
+        else
+            head=$(git -C "$script_dir/.." rev-parse --short=5 HEAD)
+            expected="${last_tag}+${head}"
+        fi
+    else
+        head=$(git -C "$script_dir/.." rev-parse --short=5 HEAD)
+        expected="$(cargo metadata --no-deps --format-version 1 --manifest-path "$script_dir/../Cargo.toml" | python3 -c 'import json,sys; print(json.load(sys.stdin)["packages"][0]["version"])')+${head}"
+    fi
+
+    echo -n "${line}. version ${expected} "
+    actual=$("$emoji_expander_bin" --version)
+    if [[ "$actual" == "$expected" ]]; then
+        green "\tpassed"
+    else
+        red "\tfailed (got $actual)"
+        failures=$((failures+1))
+    fi
+    echo
+    line=$((line+1))
+}
+
+version_test
+
 perf_test() {
     if [[ ! -r "$perf_file" ]]; then
         red "performance test skipped: missing $perf_file"
@@ -95,3 +135,9 @@ perf_test() {
 }
 
 perf_test
+
+if [[ "$failures" -ne 0 ]]; then
+    red "${failures} test(s) failed"
+    echo
+    exit 1
+fi

@@ -8,9 +8,10 @@ use emojis::EMOJIS;
 
 /// print syntax help
 fn syntax() {
-    eprintln!("Syntax: emoji-expander [-a | --all, -h | --help] [text]");
+    eprintln!("Syntax: emoji-expander [-a | --all, -h | --help, --version] [text]");
     eprintln!("  -a | --all: list all emojis");
     eprintln!("  -h | --help: this help");
+    eprintln!("  --version: print version");
     eprintln!("  text: substitute emoji shortnames in command arguments");
     eprintln!("  (no argument): substitute emoji shortnames on standard input");
     eprintln!("  Example:");
@@ -92,6 +93,8 @@ fn main() -> io::Result<()> {
         all(io::stdout().lock())?;
     } else if args.len() == 2 && (args[1] == "-h" || args[1] == "--help") {
         syntax();
+    } else if args.len() == 2 && args[1] == "--version" {
+        println!("{}", env!("EMOJI_EXPANDER_VERSION"));
     } else {
         // treat each arg as its own "input stream"
         // and print them separated by spaces
