@@ -9,11 +9,13 @@ red() {
     echo -n -e "\033[31m$1\033[0m"
 }
 
+emoji_expander_bin=${EMOJI_EXPANDER_BIN:-emoji-expander}
+
 rtest() {
     echo -n "${line}. ${2} "
-    [[ "$(echo ${1} | ./emoji-expander)" == "${2}" ]] && green "\tpassed" || red "\tfailed" # stdin test
+    [[ "$(printf '%s' "$1" | "$emoji_expander_bin")" == "$2" ]] && green "\tpassed" || red "\tfailed" # stdin test
     echo -n ..
-    [[ $(./emoji-expander "${1}") == "${2}" ]] && green passed || red failed # arg test
+    [[ "$("$emoji_expander_bin" "$1")" == "$2" ]] && green passed || red failed # arg test
     echo
     line=$((line+1))
 }
@@ -49,3 +51,22 @@ rtest "my blush is not :bb::lL" "my blush is not :bb::lL"
 rtest :smiling:laughing:blush:smiley:relieved:smirk: 🙂laughing😊smiley😌smirk:
 rtest "my blush is not :blush no stop" "my blush is not :blush no stop"
 rtest "my blush is not then is \:blush:blush:" "my blush is not then is \😊blush:"
+
+
+# Edge cases that are easy to break: spacing, punctuation, adjacent unknowns,
+# repeated colons, case sensitivity, and colon-heavy text.
+rtest "  :blush:  " "  😊  "
+rtest "hello  :blush:  world" "hello  😊  world"
+rtest "(:blush:)" "(😊)"
+rtest "[:blush:],{:smirk:}." "[😊],{😏}."
+rtest ":unknown::blush:" ":unknown:😊"
+rtest ":blush::unknown:" "😊:unknown:"
+rtest ":BLUSH:" ":BLUSH:"
+rtest ":::blush:" "::😊"
+rtest ":blush::" "😊:"
+rtest "foo::bar" "foo::bar"
+rtest "path/:blush:/file" "path/😊/file"
+rtest "http://example.com/:blush:" "http://example.com/:blush:"
+rtest "time 12:30 :blush:" "time 12:30 :blush:"
+rtest "ratio 1:2 :blush:" "ratio 1:2 :blush:"
+rtest "literal * ? [abc] :blush:" "literal * ? [abc] 😊"
