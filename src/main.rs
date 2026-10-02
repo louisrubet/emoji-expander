@@ -42,7 +42,7 @@ fn remo<R: Read, W: Write>(mut input: R, mut out: W) -> io::Result<()> {
     let mut i = 0;
     while i < buf.len() {
         if buf[i] != b':' {
-            out.write_all(&buf[i..i+1])?;
+            out.write_all(&buf[i..i + 1])?;
             i += 1;
             continue;
         }
@@ -62,7 +62,7 @@ fn remo<R: Read, W: Write>(mut input: R, mut out: W) -> io::Result<()> {
             // buf[i] == b':', so we have ":shortcode:"
             let shortcode_bytes = &buf[start..i];
             let shortcode = String::from_utf8_lossy(shortcode_bytes);
-            i += 1;// consume closing ':'
+            i += 1; // consume closing ':'
 
             // write substitution (or original form)
             substitute(&mut out, &shortcode)?;

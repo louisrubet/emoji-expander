@@ -16,7 +16,7 @@ Shell completion is available for bash, zsh and fish after `:` is pressed. After
 
 Features:
 
-- 500+ common emoji with multiple aliases (e.g. `:heart:`, `:red_heart:`, `:love:` all produce ❤️)
+- 900+ shortcodes covering 700+ unique emoji, with multiple aliases (e.g. `:heart:`, `:red_heart:`, `:love:` all produce ❤️)
 - Works with stdin and command-line arguments
 - Shell integration: bind `:` to an interactive fuzzy emoji picker (bash, zsh, fish)
 
@@ -106,70 +106,52 @@ emoji-expander [-a | --all] [-h | --help] [--version] [text]
 
 ## Included emoji
 
-Unique emoji values included in `emoji-expander`, in source order, wrapped at 50 emoji per line:
+The full shortcode inventory is available from the CLI instead of being duplicated here:
 
-```text
-😭😂❤️🔥✨💀👍😍🙏💯😊🥺👏🤣😘💪🎉😢👀💕😎🔴💙🌟😋🤷🥰😏🤔🌈👑💖🎊😴🙃💚😉🤗👌💜🌙🎈😅👋🤪🥳😄🖤😃🙄
-💓🥲😆🤩🎁🌺💤🍕🎵🌸🤤😱🎂☀️🌻🔊🤝👻🍀⚡🌊🎸🍔🌹📱💎🍎⭐🏆🎯🌴🍰👊🌷🍓🎮🚀⚽🎭🦋🎪🍉🎨🍦🏀🐱🌞🎤👶💋
-🌛🎥💝🍻🌕😮🚗🐶🏠💐🔔🥇🌜👯🎺🍄🌰🎓💸🔑😇🎳🍇🎹📚🏃🍪⏰🌲🎶👔🍋🔮🏝️🍌🎏🎀🧡💌🍁🎰🏁🍃🎋💰🍍🎷🧠⚖️🥀
-💣🌎🏈🧚🏖️🎣🍥🧜⚓🌋🧞🐠🍤🚴🧨⛵🌍🍸🚂🌏🍮🚁🌐🍡🛸🌌🎬🍢🛰️🌆🍫🚢🌃🎲🍭⛱️🌉🎟️🍬🎡🌇🧿🍯🎢🌅🔱🥜🎠⚜️🥥
-🌁🔯🥒☁️✡️🥑⛅☪️🥝⛈️🕎🥭🌤️☦️🫐🌥️🛐🍊🌦️🕉️🫒🌧️🪬🌶️❄️🧄☃️🧅⛄🫑🌨️🥔🏔️🥕⛰️🌽🗻🥬🏕️🏞️🫛🫘🥨🥯🥖🫓🥐🧈🥞🌼
-🧇🧀🥓🥩🍗🍖🌭🥙🏵️🌮🌾🌯🌿🥗🥘🍝🍂🍜🍲🍛🌳🍱🍘🍙🎍🍚🌵🍣🦞🦀🦐🦑🐙🦪🐚🐡🦈🐟🐳🐋🐬🦭🐧🦆🦢🦜🦚🦩🦅🦉
-🐦🐔🐓🐣🐤🐥🕊️🦇🐛🐌🦗🕷️🕸️🦂🦟🦠🐭🐁🐹🐰🐇🐿️🦔🐻🐻‍❄️🐨🐼🦘🦡🐾🦃🦮🐕‍🦺🐩🐺🦊🦝🐈‍⬛🦁🐯🐅🐆🐴🐎🦄🦓🦌🦬🐮🐄
-🐂🐃🐷🐖🐽🐏🐑🐐🐪🐫🦙🦒🐘🦏🦛🐵🐒🦍🦧🫏🫎🦥🦦🦨🐸🐲🐉🐍🦎🐊🐢🦖🦕🚩🎌🏴🏳️🏳️‍🌈🏳️‍⚧️🏴‍☠️🚧🔧🔨✏️📝💡✅✔️❌⚠️
-♻️🚚🔒🔖🏷️📦🚑🗑️🧪⚗️⚙️📌🔍🧹🩹🌱⬆️⬇️🔀⏪➕➖🚨📋📢🟢🙈💬📜⚰️🙂😐😑😶🤨😌👎🇦🇨🇦🇩🇦🇪🇦🇫🇦🇬🇦🇮🇦🇱🇦🇲🇦🇴🇦🇶🇦🇷🇦🇸🇦🇹
-🇦🇺🇦🇼🇦🇽🇦🇿🇧🇦🇧🇧🇧🇩🇧🇪🇧🇫🇧🇬🇧🇭🇧🇮🇧🇯🇧🇱🇧🇲🇧🇳🇧🇴🇧🇶🇧🇷🇧🇸🇧🇹🇧🇻🇧🇼🇧🇾🇧🇿🇨🇦🇨🇨🇨🇩🇨🇫🇨🇬🇨🇭🇨🇮🇨🇰🇨🇱🇨🇲🇨🇳🇨🇴🇨🇵🇨🇶🇨🇷🇨🇺🇨🇻🇨🇼🇨🇽🇨🇾🇨🇿🇩🇪🇩🇬🇩🇯🇩🇰
-🇩🇲🇩🇴🇩🇿🇪🇦🇪🇨🇪🇪🇪🇬🇪🇭🇪🇷🇪🇸🇪🇹🇪🇺🇫🇮🇫🇯🇫🇰🇫🇲🇫🇴🇫🇷🇬🇦🇬🇧🇬🇩🇬🇪🇬🇫🇬🇬🇬🇭🇬🇮🇬🇱🇬🇲🇬🇳🇬🇵🇬🇶🇬🇷🇬🇸🇬🇹🇬🇺🇬🇼🇬🇾🇭🇰🇭🇲🇭🇳🇭🇷🇭🇹🇭🇺🇮🇨🇮🇩🇮🇪🇮🇱🇮🇲🇮🇳🇮🇴
-🇮🇶🇮🇷🇮🇸🇮🇹🇯🇪🇯🇲🇯🇴🇯🇵🇰🇪🇰🇬🇰🇭🇰🇮🇰🇲🇰🇳🇰🇵🇰🇷🇰🇼🇰🇾🇰🇿🇱🇦🇱🇧🇱🇨🇱🇮🇱🇰🇱🇷🇱🇸🇱🇹🇱🇺🇱🇻🇱🇾🇲🇦🇲🇨🇲🇩🇲🇪🇲🇫🇲🇬🇲🇭🇲🇰🇲🇱🇲🇲🇲🇳🇲🇴🇲🇵🇲🇶🇲🇷🇲🇸🇲🇹🇲🇺🇲🇻🇲🇼
-🇲🇽🇲🇾🇲🇿🇳🇦🇳🇨🇳🇪🇳🇫🇳🇬🇳🇮🇳🇱🇳🇴🇳🇵🇳🇷🇳🇺🇳🇿🇴🇲🇵🇦🇵🇪🇵🇫🇵🇬🇵🇭🇵🇰🇵🇱🇵🇲🇵🇳🇵🇷🇵🇸🇵🇹🇵🇼🇵🇾🇶🇦🇷🇪🇷🇴🇷🇸🇷🇺🇷🇼🇸🇦🇸🇧🇸🇨🇸🇩🇸🇪🇸🇬🇸🇭🇸🇮🇸🇯🇸🇰🇸🇱🇸🇲🇸🇳🇸🇴
-🇸🇷🇸🇸🇸🇹🇸🇻🇸🇽🇸🇾🇸🇿🇹🇦🇹🇨🇹🇩🇹🇫🇹🇬🇹🇭🇹🇯🇹🇰🇹🇱🇹🇲🇹🇳🇹🇴🇹🇷🇹🇹🇹🇻🇹🇼🇹🇿🇺🇦🇺🇬🇺🇲🇺🇳🇺🇸🇺🇾🇺🇿🇻🇦🇻🇨🇻🇪🇻🇬🇻🇮🇻🇳🇻🇺🇼🇫🇼🇸🇽🇰🇾🇪🇾🇹🇿🇦🇿🇲🇿🇼🏴󠁧󠁢󠁥󠁮󠁧󠁿🏴󠁧󠁢󠁳󠁣󠁴󠁿🏴󠁧󠁢󠁷󠁬󠁳󠁿
+```sh
+emoji-expander --all
 ```
 
+Emoji sources included in the current table:
+
+| Source | Coverage | Notes |
+|--------|----------|-------|
+| [Unicode emoji data](https://unicode.org/Public/emoji/) / [Unicode emoji frequency](https://home.unicode.org/emoji/emoji-frequency/) | 390 / 500 target common emoji | Curated common emoji seed list, with aliases added manually. |
+| [gitmoji](https://gitmoji.dev/) | 75 / 75 official gitmoji | Every official gitmoji shortcode is supported. Each one also has a `git_` prefixed shortcode. |
+| [Unicode 16.0 flag data](https://unicode.org/Public/emoji/16.0/) | 262 / 262 flags | Country, subdivision and special flag sequences. |
+| Local convenience additions | 7 / 7 emoji | Extra completion and convenience aliases used by the shell picker. |
+
+Current packaged data:
+
+```text
+976 shortcodes
+729 unique emoji values
+```
+
+Counts are source-level counts. Sources overlap, so source rows should not be summed to get the unique packaged total.
 
 ## Git commit emoji
 
-A set of emoji for git commits is included. Each one is available with a `git_` shortcode (e.g. `:git_fix:`).
+`emoji-expander` includes full [gitmoji](https://gitmoji.dev/) coverage. For each official gitmoji, both forms work:
 
-```
-$ emoji-expander ":git_fix: resolve null pointer"
-🔧 resolve null pointer
+```text
+:art:      -> 🎨
+:git_art:  -> 🎨
+:rocket:   -> 🚀
+:git_rocket: -> 🚀
 ```
 
-| Shortcode | Emoji | Use |
-|-----------|-------|-----|
-| `:git_fix:` | 🔧 | Bug fixes |
-| `:git_build:` | 🔨 | Build system |
-| `:git_docs:` | 📝 | Documentation |
-| `:git_test:` | 🧪 | Tests |
-| `:git_check:` | ✅ | Completed |
-| `:git_remove:` | ❌ | Remove |
-| `:git_add:` | ➕ | Add |
-| `:git_delete:` | 🗑️ | Delete |
-| `:git_refactor:` | ♻️ | Refactor |
-| `:git_move:` | 🚚 | Move/rename |
-| `:git_wip:` | 🚧 | Work in progress |
-| `:git_hotfix:` | 🚑 | Critical fix |
-| `:git_config:` | ⚙️ | Configuration |
-| `:git_security:` | 🔒 | Security |
-| `:git_upgrade:` | ⬆️ | Upgrade |
-| `:git_downgrade:` | ⬇️ | Downgrade |
-| `:git_merge:` | 🔀 | Merge |
-| `:git_revert:` | ⏪ | Revert |
-| `:git_init:` | 🌱 | Initial commit |
-| `:git_patch:` | 🩹 | Minor fix |
-| `:git_cleanup:` | 🧹 | Cleanup |
-| `:git_deprecate:` | ⚰️ | Deprecation |
-| `:git_ci:` | 🟢 | CI |
-| `:git_docker:` | 🐳 | Docker |
-| `:git_gitignore:` | 🙈 | .gitignore |
-| `:git_license:` | 📜 | License |
-| `:git_announce:` | 📢 | Announcements |
-| `:git_deploy:` | 🚀 | Deploy |
-| `:git_release:` | 🎉 | Release |
-| `:git_fire:` | 🔥 | Remove code/files |
-| `:git_sparkles:` | ✨ | New feature |
-| `:git_bug:` | 🐛 | Bug |
-| `:git_art:` | 🎨 | Style/structure |
+Project-specific convenience aliases are also kept for common commit wording, for example:
+
+```text
+:git_fix:      -> 🔧
+:git_docs:     -> 📝
+:git_test:     -> 🧪
+:git_cleanup:  -> 🧹
+:git_deploy:   -> 🚀
+```
+
+Use `emoji-expander --all` to see the exact shortcode list shipped by the current build.
 
 ## Credits
 

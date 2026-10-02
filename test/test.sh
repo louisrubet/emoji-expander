@@ -84,6 +84,14 @@ rtest "time 12:30 :blush:" "time 12:30 :blush:"
 rtest "ratio 1:2 :blush:" "ratio 1:2 :blush:"
 rtest "literal * ? [abc] :blush:" "literal * ? [abc] 😊"
 
+# Gitmoji official shortcodes and git_ prefixed aliases.
+rtest ":lipstick: style polish" "💄 style polish"
+rtest ":git_lipstick: style polish" "💄 style polish"
+rtest ":green_heart: fix CI" "💚 fix CI"
+rtest ":git_green_heart: fix CI" "💚 fix CI"
+rtest ":t-rex: backwards compatibility" "🦖 backwards compatibility"
+rtest ":git_t-rex: backwards compatibility" "🦖 backwards compatibility"
+
 
 version_test() {
     local last_tag head expected actual
