@@ -24,29 +24,7 @@ Features:
 
 Requires [Rust](https://www.rust-lang.org/tools/install).
 
-### Install from Git
-
-Install the binary directly from GitHub:
-
-```sh
-cargo install --git https://github.com/louisrubet/emoji-expander --root ~/.local
-```
-
-Then ensure the binary directory is in `PATH`:
-
-```sh
-export PATH="$HOME/.local/bin:$PATH"
-```
-
-This installs the `emoji-expander` command only. To install shell integration too, clone the repository and run `install.sh --no-binary`:
-
-```sh
-git clone https://github.com/louisrubet/emoji-expander.git
-cd emoji-expander
-./install.sh --no-binary
-```
-
-### Install after cloning
+### Install from source checkout
 
 Clone the repository, then run `install.sh`:
 
@@ -57,6 +35,12 @@ cd emoji-expander
 ```
 
 `install.sh` installs the binary with `cargo install --path . --root ~/.local` and detects the shell integration from `$SHELL`.
+
+Then ensure the binary directory is in `PATH`:
+
+```sh
+export PATH="$HOME/.local/bin:$PATH"
+```
 
 Useful options:
 
