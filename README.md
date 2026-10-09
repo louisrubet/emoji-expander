@@ -88,6 +88,20 @@ emoji-expander [-a | --all] [-h | --help] [--version] [text]
 
 `--version` prints the latest git tag, with `+<5-char-commit-sha>` appended when the current commit is not exactly that tag.
 
+## Library
+
+The shortcode table is also available as a Rust library:
+
+```toml
+emoji-expander = { git = "https://github.com/louisrubet/emoji-expander" }
+```
+
+```rust
+emoji_expander::expand(":rocket: deploy");  // "🚀 deploy"
+emoji_expander::lookup("bug");              // Some("🐛")
+emoji_expander::search("thumbs");           // [("thumbs_up", "👍"), ("thumbsup", "👍")]
+```
+
 ## Included emoji
 
 The full shortcode inventory is available from the CLI instead of being duplicated here:
