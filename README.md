@@ -117,13 +117,14 @@ Emoji sources included in the current table:
 | [Unicode emoji data](https://unicode.org/Public/emoji/) / [Unicode emoji frequency](https://home.unicode.org/emoji/emoji-frequency/) | 390 / 500 target common emoji | Curated common emoji seed list, with aliases added manually. |
 | [gitmoji](https://gitmoji.dev/) | 75 / 75 official gitmoji | Every official gitmoji shortcode is supported. Each one also has a `git_` prefixed shortcode. |
 | [Unicode 16.0 flag data](https://unicode.org/Public/emoji/16.0/) | 262 / 262 flags | Country, subdivision and special flag sequences. |
+| [Signal Desktop emoji-datasource](https://github.com/signalapp/Signal-Desktop/tree/main/scripts/emoji-datasource) | 1569 additional shortcodes | Signal-compatible colon short names, e.g. `:dollar:` -> 💵. |
 | Local convenience additions | 7 / 7 emoji | Extra completion and convenience aliases used by the shell picker. |
 
 Current packaged data:
 
 ```text
-976 shortcodes
-729 unique emoji values
+2532 shortcodes
+1913 unique emoji values
 ```
 
 Counts are source-level counts. Sources overlap, so source rows should not be summed to get the unique packaged total.
@@ -158,6 +159,7 @@ Use `emoji-expander --all` to see the exact shortcode list shipped by the curren
 - [espanso](https://github.com/espanso/espanso)
 - [emoji-cli](https://github.com/babarot/emoji-cli)
 - [gitmoji](https://github.com/carloscuesta/gitmoji)
+- [Signal Desktop emoji-datasource](https://github.com/signalapp/Signal-Desktop/tree/main/scripts/emoji-datasource)
 - [emoji cheat sheet](https://www.webfx.com/tools/emoji-cheat-sheet/)
 
 ## License

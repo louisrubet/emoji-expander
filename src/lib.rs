@@ -19,8 +19,11 @@ pub fn lookup(shortcode: &str) -> Option<&'static str> {
 
 /// The `(shortcode, emoji)` pairs whose shortcode starts with `prefix`, sorted by shortcode.
 pub fn search(prefix: &str) -> Vec<(&'static str, &'static str)> {
-    let mut found: Vec<(&str, &str)> =
-        EMOJIS.iter().filter(|(short, _)| short.starts_with(prefix)).map(|(k, v)| (*k, *v)).collect();
+    let mut found: Vec<(&str, &str)> = EMOJIS
+        .iter()
+        .filter(|(short, _)| short.starts_with(prefix))
+        .map(|(k, v)| (*k, *v))
+        .collect();
     found.sort_by(|a, b| a.0.cmp(b.0));
     found
 }
