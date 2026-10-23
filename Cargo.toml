@@ -1,10 +1,15 @@
 [package]
 name = "emoji-expander"
-version = "1.2.0"
+version = "1.2.1"
 edition = "2024"
 build = "build.rs"
 license = "MIT"
-description = "emoji shortcodes to unicode expander"
+description = "Expands :shortcodes: into emoji, in arguments, stdin or as you type in the shell (with gitmoji)"
+repository = "https://github.com/louisrubet/emoji-expander"
+readme = "README.md"
+keywords = ["emoji", "shortcode", "gitmoji", "cli", "terminal"]
+categories = ["command-line-utilities", "text-processing"]
+include = ["/src", "/build.rs", "/shell_extensions", "/README.md", "/LICENSE"]
 
 [profile.release]
 opt-level = 3

@@ -23,8 +23,28 @@ fn rerun_if_git_path(path: &str) {
     }
 }
 
+/// Whether the sources are the checkout of the repository itself: not the archive of a
+/// published crate, which may sit inside some other repository.
+fn in_own_repository() -> bool {
+    let Some(top) = git_output(&["rev-parse", "--show-toplevel"]) else {
+        return false;
+    };
+    let manifest = std::env::var("CARGO_MANIFEST_DIR").unwrap_or_default();
+    match (std::fs::canonicalize(top), std::fs::canonicalize(manifest)) {
+        (Ok(top), Ok(manifest)) => top == manifest,
+        _ => false,
+    }
+}
+
 fn main() {
     println!("cargo:rerun-if-changed=build.rs");
+
+    let fallback_version = format!("v{}", std::env::var("CARGO_PKG_VERSION").unwrap());
+    if !in_own_repository() {
+        println!("cargo:rustc-env=EMOJI_EXPANDER_VERSION={fallback_version}");
+        return;
+    }
+
     rerun_if_git_path("HEAD");
     rerun_if_git_path("refs/tags");
     rerun_if_git_path("packed-refs");
@@ -33,8 +53,6 @@ fn main() {
         rerun_if_git_path(&head_ref);
     }
 
-    let fallback_version =
-        std::env::var("CARGO_PKG_VERSION").unwrap_or_else(|_| "unknown".to_string());
     let last_tag = git_output(&["describe", "--tags", "--abbrev=0"]).unwrap_or(fallback_version);
     let exact_tag = git_output(&["describe", "--tags", "--exact-match", "HEAD"]);
     let commit = git_output(&["rev-parse", "--short=5", "HEAD"]);

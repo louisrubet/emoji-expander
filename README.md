@@ -16,7 +16,7 @@ Shell completion is available for bash, zsh and fish after `:` is pressed. After
 
 Features:
 
-- 900+ shortcodes covering 700+ unique emoji, with multiple aliases (e.g. `:heart:`, `:red_heart:`, `:love:` all produce ❤️)
+- 2500+ shortcodes covering 1900+ unique emoji, with multiple aliases (e.g. `:heart:`, `:red_heart:`, `:love:` all produce ❤️)
 - Works with stdin and command-line arguments
 - Shell integration: bind `:` to an interactive fuzzy emoji picker (bash, zsh, fish)
 
@@ -24,9 +24,17 @@ Features:
 
 Requires [Rust](https://www.rust-lang.org/tools/install).
 
+### From crates.io
+
+```sh
+cargo install emoji-expander
+```
+
+This installs the command only. For the shell integration (the `:` picker), clone the repository and run `./install.sh --no-binary --zsh` (or `--bash`, `--fish`), as below.
+
 ### Install from source checkout
 
-Clone the repository, then run `install.sh`:
+Clone the repository, then run `install.sh`, which installs the command and the shell integration:
 
 ```sh
 git clone https://github.com/louisrubet/emoji-expander.git
@@ -93,7 +101,7 @@ emoji-expander [-a | --all] [-h | --help] [--version] [text]
 The shortcode table is also available as a Rust library:
 
 ```toml
-emoji-expander = { git = "https://github.com/louisrubet/emoji-expander" }
+emoji-expander = "1.2"
 ```
 
 ```rust
