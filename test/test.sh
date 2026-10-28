@@ -79,9 +79,9 @@ rtest ":::blush:" "::😊"
 rtest ":blush::" "😊:"
 rtest "foo::bar" "foo::bar"
 rtest "path/:blush:/file" "path/😊/file"
-rtest "http://example.com/:blush:" "http://example.com/:blush:"
-rtest "time 12:30 :blush:" "time 12:30 :blush:"
-rtest "ratio 1:2 :blush:" "ratio 1:2 :blush:"
+rtest "http://example.com/:blush:" "http://example.com/😊"
+rtest "time 12:30 :blush:" "time 12:30 😊"
+rtest "ratio 1:2 :blush:" "ratio 1:2 😊"
 rtest "literal * ? [abc] :blush:" "literal * ? [abc] 😊"
 
 # Gitmoji official shortcodes and git_ prefixed aliases.

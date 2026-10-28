@@ -35,16 +35,17 @@ pub fn expand(text: &str) -> String {
     String::from_utf8_lossy(&out).into_owned()
 }
 
-/// substitute emoji shortname with unicode emoji in place
-/// returns true if substitution happened
-fn substitute<W: Write>(out: &mut W, emoji: &str) -> io::Result<bool> {
-    if let Some(replacement) = lookup(emoji) {
-        write!(out, "{replacement}")?;
-        Ok(true)
-    } else {
-        write!(out, ":{emoji}:")?;
-        Ok(false)
+/// The emoji of the `:shortcode:` starting `text`, and the length of that shortcode.
+/// A shortcode has no whitespace.
+fn shortcode_at(text: &[u8]) -> Option<(&'static str, usize)> {
+    let end = 1 + text[1..]
+        .iter()
+        .position(|&b| b == b':' || b.is_ascii_whitespace())?;
+    if text[end] != b':' {
+        return None;
     }
+    let emoji = std::str::from_utf8(&text[1..end]).ok().and_then(lookup)?;
+    Some((emoji, end + 1))
 }
 
 /// substitute emoji shortnames in an input stream
@@ -56,34 +57,22 @@ pub fn expand_stream<R: Read, W: Write>(mut input: R, mut out: W) -> io::Result<
     // For bigger inputs (eg GB files) a buffered streaming approach should be preferred
 
     let mut i = 0;
-    while i < buf.len() {
-        if buf[i] != b':' {
-            out.write_all(&buf[i..i + 1])?;
-            i += 1;
-            continue;
-        }
-
-        i += 1; // consume ':'
-        let start = i;
-        while i < buf.len() && buf[i] != b':' {
-            i += 1;
-        }
-
-        if i >= buf.len() {
-            // hit EOF without closing ':'
-            out.write_all(b":")?;
-            out.write_all(&buf[start..])?;
-            break;
-        } else {
-            // buf[i] == b':', so we have ":shortcode:"
-            let shortcode_bytes = &buf[start..i];
-            let shortcode = String::from_utf8_lossy(shortcode_bytes);
-            i += 1; // consume closing ':'
-
-            // write substitution (or original form)
-            substitute(&mut out, &shortcode)?;
+    while let Some(colon) = buf[i..].iter().position(|&b| b == b':') {
+        out.write_all(&buf[i..i + colon])?;
+        i += colon;
+        match shortcode_at(&buf[i..]) {
+            Some((emoji, len)) => {
+                out.write_all(emoji.as_bytes())?;
+                i += len;
+            }
+            // Not a shortcode: this ':' is text, the next one may open one.
+            None => {
+                out.write_all(b":")?;
+                i += 1;
+            }
         }
     }
+    out.write_all(&buf[i..])?;
 
     Ok(())
 }
@@ -97,6 +86,19 @@ mod tests {
         assert_eq!(expand(":rocket: deploy :nope: v2"), "🚀 deploy :nope: v2");
         assert_eq!(expand("no colon"), "no colon");
         assert_eq!(expand("open :rocket"), "open :rocket");
+    }
+
+    #[test]
+    fn stray_colons_are_text() {
+        assert_eq!(expand("see: :bug: fix"), "see: 🐛 fix");
+        assert_eq!(expand("ratio 1:2 then :rocket:"), "ratio 1:2 then 🚀");
+        assert_eq!(expand("a: b :tada: c :fire:"), "a: b 🎉 c 🔥");
+        assert_eq!(expand("http://x :fire:"), "http://x 🔥");
+        assert_eq!(expand("note :a :rocket: here"), "note :a 🚀 here");
+        assert_eq!(expand("::rocket::"), ":🚀:");
+        assert_eq!(expand(":rocket::tada:"), "🚀🎉");
+        assert_eq!(expand("at 10:30:45, ok"), "at 10:30:45, ok");
+        assert_eq!(expand("é:rocket:ü :"), "é🚀ü :");
     }
 
     #[test]
